@@ -1,0 +1,58 @@
+.container {
+  width: 1300px;
+  margin: 50px auto;
+
+  h1 {
+    font-family: 'Rubik_Scribble';
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .auth-form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form-item {
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 400px;
+      padding: 10px 15px;
+    }
+
+    button {
+      width: 150px;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 10px;
+      margin: 0;
+
+      &:disabled {
+        opacity: 70%;
+      }
+    }
+
+    .error {
+      text-align: center;
+      color: crimson;
+      margin: 3px 0 10px;
+    }
+  }
+
+  .link {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+    }
+  }
+}

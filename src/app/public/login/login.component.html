@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Вхід</h1>
+  <form class="auth-form" [formGroup]="loginForm">
+    <div class="form-item">
+      <input
+        id="login"
+        formControlName="login"
+        type="text"
+        placeholder="Ваш логін..."
+      >
+      <div *ngIf="loginForm.controls['login'].invalid && loginForm.controls['login'].touched">
+        <p class="error">Поле Логін є обов'язковим</p>
+      </div>
+    </div>
+    <div class="form-item">
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="Ваш пароль..."
+      >
+      <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+        <p class="error">Поле Пароль є обов'язковим</p>
+      </div>
+    </div>
+    <button type="button" [disabled]="loginForm.invalid" (click)="login()">Увійти</button>
+  </form>
+  <p class="link"><a routerLink="/signup">Реєстрація</a></p>
+</div>

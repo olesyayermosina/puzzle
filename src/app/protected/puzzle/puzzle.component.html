@@ -1,0 +1,73 @@
+<div class="app">
+  <h1>Головоломка "Нурікабе"</h1>
+  <div class="content">
+    <div class="section">
+      <h2>Задайте умови гри</h2>
+      <p>Отримайте правила гри або задайте їх самі:</p>
+      <form class="size-form" [formGroup]="areaSizeForm">
+        <div class="formGroup">
+          <label for="size">Оберіть розмірність ігрового поля:</label>
+          <input
+            id="size"
+            formControlName="size"
+            type="number"
+            min="3"
+            placeholder="3"
+          >
+        </div>
+        <div class="formGroup textarea">
+          <label for="size">Введіть слова для головоломки, розділяючи їх комами:</label>
+          <textarea
+            id="words"
+            formControlName="words"
+            rows="5"
+            cols="30"
+            placeholder="Example, puzzle"
+          ></textarea>
+        </div>
+      </form>
+      <form class="rules-form" [formGroup]="areaForm">
+        <div *ngFor="let row of areaForm.controls | keyvalue">
+          <div class="rules-row" formGroupName="{{row.key}}">
+            <input
+              *ngFor="let cell of getRowControls(row.value) | keyvalue"
+              formControlName="{{cell.key}}"
+              type="text"
+              maxlength="1"
+              size="1"
+            >
+          </div>
+        </div>
+        <div *ngIf="areaForm.invalid && areaForm.touched">
+          <p class="error">Заповніть усі ячейки ігрового поля!</p>
+          <p class="error">Для порожніх значень використовуйте "0"</p>
+        </div>
+        <div class="button-container">
+          <button (click)="getRules()">Готові правила</button>
+          <button [disabled]="areaForm.invalid" (click)="sendRules()">Відправити</button>
+        </div>
+      </form>
+    </div>
+    <div class="section">
+      <h2>Розв'язок:</h2>
+      <div class="result-grid">
+        <ng-container *ngIf="result.length; else emptyResult">
+          <div *ngFor="let solution of result" class="game-result">
+            <div *ngFor="let row of solution" class="game-field">
+              <div *ngFor="let cell of row" class="result-row">
+                <div
+                  class="cell"
+                  [ngClass]="{'sea': +cell === 0}"
+                >{{+cell !== 0 ? cell : ''}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyResult>
+  <p class="empty-result">Щоб розв'язати головоломку "Нурікабе", задайте умови гри та натисніть "Відправити"</p>
+</ng-template>
