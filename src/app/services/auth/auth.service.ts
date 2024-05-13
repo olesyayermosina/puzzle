@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   public login(user: any): Observable<any> {
-    return this.http.post<any>(this.loginUrl, {user}, this.httpOptions).pipe(
+    return this.http.post<any>(this.loginUrl, {name: user.login, password: user.password}, this.httpOptions).pipe(
       tap(res => {
         this.user.next({token: res.token});
         localStorage.setItem('token', res.token)
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   public signup(user: any): Observable<any> {
-    return this.http.post<any>(this.signupUrl, { user}, this.httpOptions).pipe(
+    return this.http.post<any>(this.signupUrl, {name: user.login, password: user.password}, this.httpOptions).pipe(
       catchError(this.handleError<any>('signup', []))
     );
   }

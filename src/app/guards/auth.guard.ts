@@ -10,7 +10,7 @@ export const authGuard = () => {
   return authService.getAuthenticated().pipe(
     map(user => {
       console.log(user)
-      return user.token ? true : router.navigateByUrl('/login')
+      return user?.token ? true : router.navigateByUrl('/login')
     })
   );
 };

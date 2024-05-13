@@ -2,18 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PuzzleService} from "../../services/puzzle/puzzle.service";
 
-const mockResult = [
-  [
-    ['A', '0', 'B'], ['D', 'E', 'F'], ['G', 'J', 'I'],
-  ],
-  [
-    ['A', 'T', 'B'], ['D', 'E', 'F'], ['G', 'J', 'I'],
-  ],
-  [
-    ['R', '0', 'B'], ['D', 'E', 'F'], ['G', 'J', 'I'],
-  ],
-];
-
 @Component({
   selector: 'app-puzzle',
   templateUrl: './puzzle.component.html',
